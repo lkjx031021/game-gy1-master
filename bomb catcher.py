@@ -12,7 +12,7 @@ def print_text(font, x, y, text, color=(255, 255, 255)):
 
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('懒得看技术的李开复')
-font1 = pygame.font.Font(None, 24)
+font1 = pygame.font.Font('FZXBSJW.TTF', 24)
 pygame.mouse.set_visible(False)
 white = 255,255,255
 red = 220, 50, 50
@@ -25,7 +25,7 @@ game_over = True
 mouse_x = mouse_y = 0
 pos_x = 0
 pos_y = 560
-bomb_x = 3
+bomb_x = random.randint(3,600)
 bomb_y = 5
 vel_y = 1
 vel_x = 1
@@ -58,7 +58,7 @@ while True:
         mouse_x = mouse_y = 0
         pos_x = 0
         pos_y = 560
-        bomb_x = 3
+        bomb_x = random.randint(3,600)
         bomb_y = 5
         vel_y = 1
         vel_x = 1
@@ -66,7 +66,7 @@ while True:
         rect_wide = 150
         vel_rect = 0
         filter = False
-        print_text(font1, 100, 200, "<click to play>")
+        print_text(font1, 100, 200, "<按任意键开始>")
     else:
         # move the bomb
 
@@ -103,6 +103,7 @@ while True:
             else:
                 filter = False
                 game_over = True
+                lives -= 1
         else:
             filter = False
 
@@ -140,7 +141,10 @@ while True:
             pos_x = 800 - rect_wide
         pygame.draw.rect(screen, black, (pos_x-4,pos_y-4,rect_wide,20), 0)
         pygame.draw.rect(screen, red, (pos_x,pos_y,rect_wide, 20), 0)
-    print_text(font1, 0, 0, "LIVES: " + str(lives))
-    print_text(font1, 600, 0, "分数: " + str(score))
+    print_text(font1, 0, 0, u"LIVES: " + str(lives))
+    print_text(font1, 700, 0, u'分数: ' + str(score))
 
     pygame.display.update()
+
+
+
